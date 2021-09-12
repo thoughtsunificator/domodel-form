@@ -1,4 +1,4 @@
-# domodel-form
+# domodel-form [![Build Status](https://travis-ci.com/thoughtsunificator/domodel-form.svg?branch=master)](https://travis-ci.com/thoughtsunificator/domodel-form)
 
 Form system for [domodel](https://github.com/thoughtsunificator/domodel).
 
