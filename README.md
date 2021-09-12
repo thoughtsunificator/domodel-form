@@ -51,20 +51,20 @@ export default {
 ``src/binding/demo.js``
 ```javascript
 import { Core, Observable, Binding } from "domodel"
-import { FormModel, FormBinding } from "@domodel/form"
-import YourFormModel from "../model/your-form.js"
+import { FormModel, FormBinding, Form } from "@domodel/form"
+import YourFormModel from "./your-form.js"
 
 export default class extends Binding {
 
 	async onCreated() {
 
-		const form = new Observable()
+		const form = new Form()
 
 		form.listen("submitted", data => {
 			console.log(`Your name is: ${data.name}`)
 		})
 
-		Core.run(FormModel(YourFormModel), { parentNode: document.body, binding: new FormBinding({ observable: form }) })
+		Core.run(FormModel(YourFormModel), { binding: new FormBinding({ form }) })
 
 	}
 

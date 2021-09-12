@@ -1,10 +1,7 @@
 import { JSDOM } from "jsdom"
 import { Core, Binding } from "domodel"
 
-import FormModel from "../src/model/form.js"
-import FormBinding from "../src/model/form.binding.js"
-
-import Form from "../src/object/form.js"
+import { FormModel, FormBinding, Form } from "../index.js"
 
 const virtualDOM = new JSDOM(``)
 const window = virtualDOM.window
