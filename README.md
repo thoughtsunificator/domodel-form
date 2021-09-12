@@ -60,7 +60,7 @@ export default class extends Binding {
 
 		const form = new Form()
 
-		form.listen("submitted", data => {
+		this.listen(form, "submitted", data => {
 			console.log(`Your name is: ${data.name}`)
 		})
 
