@@ -1,0 +1,30 @@
+{
+	"name": "@domodel/form",
+	"type": "module",
+	"main": "index.js",
+	"description": "Form system for domodel",
+	"devDependencies": {
+		"docdash": "^1.2.0",
+		"eslint": "^7.0.0",
+		"jsdoc": "^3.6.7",
+		"jsdom": "^17.0.0",
+		"nodeunit-esm": "^1.0.2"
+	},
+	"scripts": {
+		"test": "nodeunit-esm",
+		"generate-docs": "jsdoc --configure .jsdoc.json --verbose",
+		"lint": "eslint src/**/*.js"
+	},
+	"dependencies": {
+		"domodel": "^1.0.9"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thoughtsunificator/domodel-form.git"
+	},
+	"bugs": {
+		"url": "https://github.com/thoughtsunificator/domodel-form/issues"
+	},
+	"author": "Romain Lebesle <oss@thoughtsunificator.me> (https://thoughtsunificator.me)",
+	"license": "MIT"
+}
