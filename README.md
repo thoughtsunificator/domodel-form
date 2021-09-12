@@ -56,7 +56,7 @@ import YourFormModel from "./your-form.js"
 
 export default class extends Binding {
 
-	async onCreated() {
+	onCreated() {
 
 		const form = new Form()
 
