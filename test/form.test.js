@@ -1,14 +1,17 @@
+import assert from "assert"
 import { Observable } from "domodel"
 
 import Form from "../src/object/form.js"
 
-export function instance(test) {
-	test.expect(4)
-	const obj = { a: 1 }
-	const form = new Form(obj)
-	test.ok(form instanceof Observable)
-	test.deepEqual(form.initialData, obj)
-	test.strictEqual(typeof form.data, "object")
-	test.strictEqual(Object.entries(form.data).length, 0)
-	test.done()
-}
+describe("form", () => {
+
+	it("instance", () => {
+		const obj = { a: 1 }
+		const form = new Form(obj)
+		assert.ok(form instanceof Observable)
+		assert.deepEqual(form.initialData, obj)
+		assert.strictEqual(typeof form.data, "object")
+		assert.strictEqual(Object.entries(form.data).length, 0)
+	})
+
+})
