@@ -9,7 +9,6 @@ jobs:
   tagged-release:
     name: "Tagged Release"
     runs-on: "ubuntu-latest"
-    if: ${{ github.ref == 'refs/heads/master' }}
 
     steps:
       - name: git-checkout
