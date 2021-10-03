@@ -1,4 +1,4 @@
-name: "tagged-release"
+name: "release"
 
 on:
   push:
@@ -6,21 +6,39 @@ on:
       - "v*"
 
 jobs:
-  tagged-release:
-    name: "Tagged Release"
+  release:
+    name: "Release"
     runs-on: "ubuntu-latest"
 
     steps:
       - name: git-checkout
         uses: actions/checkout@v2
 
-      - name: Install all dependencies
-        run: npm install
+      - name: npm ci
+        run: npm ci
 
-      - name: Test
+      - name: npm test
         run: npm test
 
-      - uses: "marvinpinto/action-automatic-releases@latest"
+      - name: Automatic release
+        uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.PAT_TOKEN }}"
           prerelease: false
+
+      - name: Generate documentation
+        run: npm run generate-docs
+
+      - name: Push documentation
+        uses: s0/git-publish-subdir-action@develop
+        env:
+          REPO: self
+          BRANCH: gh-pages
+          FOLDER: docs
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish to npm
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          access: public
