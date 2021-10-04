@@ -16,7 +16,7 @@
 		"lint": "eslint src/**/*.js"
 	},
 	"dependencies": {
-		"domodel": "^1.0.9"
+		"domodel": "^1.0.46"
 	},
 	"repository": {
 		"type": "git",
@@ -27,5 +27,5 @@
 	},
 	"author": "Romain Lebesle <oss@thoughtsunificator.me> (https://thoughtsunificator.me)",
 	"license": "MIT",
-	"version": "0.0.9"
+	"version": "0.0.10"
 }
