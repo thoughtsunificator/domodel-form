@@ -90,7 +90,7 @@ describe("form.binding", () => {
 	})
 
 	it("instance", () => {
-		assert.ok(new FormBinding() instanceof Binding)
+		assert.ok(FormBinding.prototype instanceof Binding)
 	})
 
 	it("onCreated", () => {

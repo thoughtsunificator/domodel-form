@@ -1,5 +1,8 @@
 import { Observable } from "domodel"
 
+/**
+ * @global
+ */
 class Form extends Observable {
 
 	/**
@@ -12,6 +15,7 @@ class Form extends Observable {
 	}
 
 	/**
+	 * @readonly
 	 * @type {object}
 	 */
 	get initialData() {
@@ -19,6 +23,7 @@ class Form extends Observable {
 	}
 
 	/**
+	 * @readonly
 	 * @type {object}
 	 */
 	get data() {
