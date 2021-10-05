@@ -6,6 +6,14 @@ import { EventListener } from "domodel"
 class FormEventListener extends EventListener {
 
 	/**
+	 * @name submitted
+	 * @memberOf FormEventListener
+	 * @function
+	 * @param {object} data
+	 *
+	*/
+
+	/**
 	 *
 	 */
 	focus() {
