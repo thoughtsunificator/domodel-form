@@ -6,22 +6,21 @@ import { EventListener } from "domodel"
 class FormEventListener extends EventListener {
 
 	/**
-	 * @name submitted
-	 * @memberOf FormEventListener
-	 * @function
-	 * @param {object} data
+	 * @event FormEventListener#submitted
+	 * @property {object} data
 	 *
 	*/
 
 	/**
-	 *
+	 * @event FormEventListener#focus
 	 */
 	focus() {
 		this.identifier[this.keys[0]].focus()
 	}
 
 	/**
-	 * @param {object} data
+	 * @event FormEventListener#load
+	 * @property {object} data
 	 */
 	load(data) {
 		for(const key in data) {
@@ -51,7 +50,7 @@ class FormEventListener extends EventListener {
 	}
 
 	/**
-	 *
+	 * @event FormEventListener#clear
 	 */
 	clear() {
 		for(const key in this.identifier) {
@@ -68,7 +67,7 @@ class FormEventListener extends EventListener {
 	}
 
 	/**
-	 *
+	 * @event FormEventListener#submit
 	 */
 	submit() {
 		const { form } = this.properties
