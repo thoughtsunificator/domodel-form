@@ -17,17 +17,17 @@ import MyFormModel from "./form.js"
 
 export default class extends Binding {
 
-	onCreated() {
+  onCreated() {
 
-		const form = new Form()
+    const form = new Form()
 
-		this.listen(form, "submitted", data => {
-			console.log(`Your name is: ${data.name}`)
-		})
+    this.listen(form, "submitted", data => {
+      console.log(`Your name is: ${data.name}`)
+    })
 
-		Core.run(FormModel(MyFormModel), { binding: new FormBinding({ form }) })
+    Core.run(FormModel(MyFormModel), { binding: new FormBinding({ form }) })
 
-	}
+  }
 
 }
 
