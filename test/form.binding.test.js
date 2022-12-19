@@ -34,6 +34,11 @@ const RootModel = FormModel({
 			identifier: "date"
 		},
 		{
+			tagName: "input",
+			type: "date",
+			identifier: "date2"
+		},
+		{
 			tagName: "div",
 			children: [
 				{
@@ -97,12 +102,12 @@ describe("form.binding", () => {
 		const form = new Form()
 		const binding = new FormBinding({ form })
 		rootBinding.run(RootModel, { binding })
-		assert.strictEqual(Object.keys(binding.keys).length, 8)
+		assert.strictEqual(Object.keys(binding.keys).length, 9)
 		assert.strictEqual(binding.root.tagName, "FORM")
 		assert.strictEqual(binding.root.className, "form")
 		assert.deepEqual(Object.keys(binding.identifier), binding.keys)
 		assert.strictEqual(binding.identifier.name, binding.identifier[binding.keys[0]])
-		assert.strictEqual(binding.identifier.file, binding.identifier[binding.keys[7]])
+		assert.strictEqual(binding.identifier.file, binding.identifier[binding.keys[8]])
 	})
 
 	it("focus", () => {
@@ -123,6 +128,7 @@ describe("form.binding", () => {
 			choices: "b",
 			body: "fdslfsdifhdsfds",
 			date: new Date("1990-02-20"),
+			date2: "1990-02-20",
 			gender: "female",
 			married: true,
 			kids: false
@@ -131,9 +137,10 @@ describe("form.binding", () => {
 		assert.strictEqual(binding.identifier.choices.value, "b")
 		// assert.strictEqual(binding.identifier.body.textContent, "fdslfsdifhdsfds") // JSDOM bug
 		assert.strictEqual(binding.identifier.date.value, "1990-02-20")
+		assert.strictEqual(binding.identifier.date2.value, "1990-02-20")
 		assert.strictEqual(binding.root.querySelector("input[name=gender]:checked").value, "female")
 		assert.strictEqual(binding.identifier.married.checked, true)
-		assert.strictEqual(binding.identifier.kids.checked, false)
+		assert.strictEqual(binding.identifier.kids.checked, false)		
 	})
 
 	it("clear", () => {
@@ -151,11 +158,12 @@ describe("form.binding", () => {
 		const binding = new FormBinding({ form })
 		rootBinding.run(RootModel, { binding })
 		form.listen("submitted", data => {
-			assert.deepEqual(Object.keys(data), ["name", "body", "choices", "date", "gender", "married", "kids", "file"])
+			assert.deepEqual(Object.keys(data), ["name", "body", "choices", "date", "date2", "gender", "married", "kids", "file"])
 			assert.strictEqual(data.name, "")
 			assert.strictEqual(data.choices, "a")
 			assert.strictEqual(data.body, "")
 			assert.strictEqual(data.date, "")
+			assert.strictEqual(data.date2, "")
 			assert.strictEqual(data.gender, null)
 			assert.strictEqual(data.married, false)
 			assert.strictEqual(data.kids, false)
