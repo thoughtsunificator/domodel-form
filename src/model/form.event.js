@@ -24,11 +24,14 @@ class FormEventListener extends EventListener {
 	 */
 	load(data) {
 		for(const key in data) {
+			if (!(key in this.identifier)) {
+				continue;
+			}
 			if(this.identifier[key].tagName === "INPUT" && this.identifier[key].type === "checkbox") {
 				this.identifier[key].checked = data[key] || false
 			} else if(this.identifier[key].tagName === "INPUT" && this.identifier[key].type === "radio") {
 				[...this.root.querySelectorAll(`input[name=${this.identifier[key].name}]`)].find(element => element.value == data[key]).checked = true
-			} else if(this.identifier[key].tagName === "INPUT" && this.identifier[key].type === "date") {
+			} else if(this.identifier[key].tagName === "INPUT" && this.identifier[key].type === "date" && data[key] instanceof Date) {
 				this.identifier[key].valueAsDate = data[key]
 			} else if(this.identifier[key].tagName === "SELECT") {
 				let value
