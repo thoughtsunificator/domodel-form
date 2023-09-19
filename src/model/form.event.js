@@ -98,7 +98,7 @@ class FormEventListener extends EventListener {
 				data[key] = true
 			} else {
 				const value = parseFloat(data[key])
-				if(!isNaN(value)) {
+				if(!isNaN(value) && isFinite(data[key])) {
 					data[key] = value
 				}
 			}
