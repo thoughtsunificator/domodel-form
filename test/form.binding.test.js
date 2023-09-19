@@ -74,6 +74,26 @@ const RootModel = FormModel({
 			]
 		},
 		{
+			tagName: "div",
+			children: [
+				{
+					tagName: "input",
+					value: "1",
+					identifier: "number1"
+				},
+				{
+					tagName: "input",
+					value: "1.1",
+					identifier: "number2"
+				},
+				{
+					tagName: "input",
+					value: "1.1.1",
+					identifier: "number3"
+				},
+			]
+		},
+		{
 			tagName: "input",
 			type: "file",
 			identifier: "file"
@@ -102,12 +122,12 @@ describe("form.binding", () => {
 		const form = new Form()
 		const binding = new FormBinding({ form })
 		rootBinding.run(RootModel, { binding })
-		assert.strictEqual(Object.keys(binding.keys).length, 9)
+		assert.strictEqual(Object.keys(binding.keys).length, 12)
 		assert.strictEqual(binding.root.tagName, "FORM")
 		assert.strictEqual(binding.root.className, "form")
 		assert.deepEqual(Object.keys(binding.identifier), binding.keys)
 		assert.strictEqual(binding.identifier.name, binding.identifier[binding.keys[0]])
-		assert.strictEqual(binding.identifier.file, binding.identifier[binding.keys[8]])
+		assert.strictEqual(binding.identifier.file, binding.identifier[binding.keys[11]])
 	})
 
 	it("focus", () => {
@@ -131,7 +151,10 @@ describe("form.binding", () => {
 			date2: "1990-02-20",
 			gender: "female",
 			married: true,
-			kids: false
+			kids: false,
+			number1: 1,
+			number2: 1.1,
+			number3: "1.1.1",
 		})
 		assert.strictEqual(binding.identifier.name.value, "Yasuhito")
 		assert.strictEqual(binding.identifier.choices.value, "b")
@@ -140,7 +163,10 @@ describe("form.binding", () => {
 		assert.strictEqual(binding.identifier.date2.value, "1990-02-20")
 		assert.strictEqual(binding.root.querySelector("input[name=gender]:checked").value, "female")
 		assert.strictEqual(binding.identifier.married.checked, true)
-		assert.strictEqual(binding.identifier.kids.checked, false)		
+		assert.strictEqual(binding.identifier.kids.checked, false)
+		assert.strictEqual(binding.identifier.number1.value, "1")
+		assert.strictEqual(binding.identifier.number2.value, "1.1")
+		assert.strictEqual(binding.identifier.number3.value, "1.1.1")
 	})
 
 	it("clear", () => {
@@ -158,7 +184,7 @@ describe("form.binding", () => {
 		const binding = new FormBinding({ form })
 		rootBinding.run(RootModel, { binding })
 		form.listen("submitted", data => {
-			assert.deepEqual(Object.keys(data), ["name", "body", "choices", "date", "date2", "gender", "married", "kids", "file"])
+			assert.deepEqual(Object.keys(data), ["name", "body", "choices", "date", "date2", "gender", "married", "kids", "number1", "number2", "number3", "file"])
 			assert.strictEqual(data.name, "")
 			assert.strictEqual(data.choices, "a")
 			assert.strictEqual(data.body, "")
@@ -167,6 +193,9 @@ describe("form.binding", () => {
 			assert.strictEqual(data.gender, null)
 			assert.strictEqual(data.married, false)
 			assert.strictEqual(data.kids, false)
+			assert.strictEqual(data.number1, 1)
+			assert.strictEqual(data.number2, 1.1)
+			assert.strictEqual(data.number3, "1.1.1")
 			assert.ok(data.file instanceof window.FileList)
 			assert.strictEqual(data.file.length, 0)
 		})
